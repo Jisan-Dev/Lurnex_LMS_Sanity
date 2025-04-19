@@ -10,5 +10,15 @@ import { categoryType } from "./categoryType";
 import { lessonCompletionType } from "./lessonCompletion";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [courseType, moduleType, lessonType, instructorType, blockContent, studentType, enrollmentType, categoryType, lessonCompletionType],
+  types: [
+    courseType,
+    moduleType,
+    lessonType,
+    instructorType,
+    blockContent,
+    studentType,
+    enrollmentType,
+    categoryType,
+    lessonCompletionType,
+  ],
 };
