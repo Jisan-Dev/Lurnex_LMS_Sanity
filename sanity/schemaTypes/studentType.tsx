@@ -42,7 +42,9 @@ export const studentType = defineType({
     },
     prepare({ firstName, lastName, imageUrl }) {
       return {
-        title: `${firstName.charAt(0).toUpperCase()}${firstName.slice(1)} ${lastName.charAt(0).toUpperCase()}${lastName.slice(1)}`,
+        title: `${firstName.charAt(0).toUpperCase()}${firstName.slice(1)} ${lastName
+          .charAt(0)
+          .toUpperCase()}${lastName.slice(1)}`,
         media: <Image src={imageUrl} alt={`${firstName} ${lastName}`} width={100} height={100} />,
       };
     },
