@@ -1,4 +1,4 @@
-import groq, { defineQuery } from "groq";
+import { defineQuery } from "groq";
 import { sanityFetch } from "../live";
 
 export async function getStudentByClerkId(clerkId: string) {
