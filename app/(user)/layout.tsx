@@ -1,5 +1,6 @@
 // import Header from "@/components/Header";
 import Header from "@/components/Header";
+import { SanityLive } from "@/sanity/lib/live";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 
@@ -19,6 +20,8 @@ export default function UserLayout({
         <Header />
         <main className="flex-1">{children}</main>
       </div>
+
+      <SanityLive />
     </ClerkProvider>
   );
 }
