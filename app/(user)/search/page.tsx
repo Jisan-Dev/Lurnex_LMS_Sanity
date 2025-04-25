@@ -4,5 +4,5 @@ interface SearchPageProps {
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const term = (await searchParams).term;
-  return <div>{term}</div>;
+  return <div>Searched For: {term}</div>;
 }
