@@ -1,4 +1,4 @@
-import groq, { defineQuery } from "groq";
+import { defineQuery } from "groq";
 import { sanityFetch } from "../live";
 
 export async function isEnrolledInCourse(clerkId: string, courseId: string): Promise<boolean> {
@@ -18,7 +18,9 @@ export async function isEnrolledInCourse(clerkId: string, courseId: string): Pro
     console.log("[STUDENT ID]", studentId);
 
     // Then check for enrollment using the student's Sanity document ID
-    const enrollmentQuery = defineQuery(`*[_type == 'enrollment' && student._ref == $studentId && course._ref == $courseId][0]`);
+    const enrollmentQuery = defineQuery(
+      `*[_type == 'enrollment' && student._ref == $studentId && course._ref == $courseId][0]`
+    );
     const enrollment = await sanityFetch({
       query: enrollmentQuery,
       params: { studentId: studentId.data, courseId },
