@@ -4,6 +4,8 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { ArrowLeft, BookOpen } from "lucide-react";
 import Link from "next/link";
+import EnrollButton from "@/components/EnrollButton";
+import { isEnrolledInCourse } from "@/sanity/lib/student/isEnrolledInCourse";
 
 interface CoursePageProps {
   params: Promise<{ slug: string }>;
@@ -21,6 +23,8 @@ export default async function CoursePage({ params }: CoursePageProps) {
       </div>
     );
   }
+
+  const isEnrolled = userId && course._id ? await isEnrolledInCourse(userId, course._id) : false;
 
   return (
     <div className="min-h-screen bg-background">
@@ -58,7 +62,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
               <div className="text-3xl font-bold text-white mb-4">
                 {course.price === 0 ? "Free" : `$${course.price}`}
               </div>
-              {/* <EnrollButton courseId={course._id} isEnrolled={isEnrolled} /> */}
+              <EnrollButton courseId={course._id} isEnrolled={isEnrolled} />
             </div>
           </div>
         </div>
