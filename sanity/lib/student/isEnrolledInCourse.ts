@@ -15,8 +15,6 @@ export async function isEnrolledInCourse(clerkId: string, courseId: string): Pro
       return false;
     }
 
-    console.log("[STUDENT ID]", studentId);
-
     // Then check for enrollment using the student's Sanity document ID
     const enrollmentQuery = defineQuery(
       `*[_type == 'enrollment' && student._ref == $studentId && course._ref == $courseId][0]`

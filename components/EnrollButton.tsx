@@ -1,5 +1,6 @@
 "use client";
 
+import { createStripeCheckout } from "@/actions/createStripeCheckout";
 import { useUser } from "@clerk/nextjs";
 import { CheckCircle } from "lucide-react";
 import Link from "next/link";
@@ -11,7 +12,22 @@ function EnrollButton({ courseId, isEnrolled }: { courseId: string; isEnrolled: 
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
-  const handleEnroll = (courseId: string) => {};
+  const handleEnroll = (courseId: string) => {
+    startTransition(async () => {
+      try {
+        const userId = user?.id;
+        if (!userId) return;
+
+        const { url } = await createStripeCheckout(courseId, userId);
+        if (url) {
+          router.push(url);
+        }
+      } catch (error) {
+        console.error("Error in handleEnroll:, error");
+        throw new Error("Failed to create checkout session");
+      }
+    });
+  };
 
   // Show loading state while checking user is loading
   if (!isUserLoaded || isPending) {
